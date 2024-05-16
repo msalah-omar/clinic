@@ -1,0 +1,56 @@
+server:
+  port: 8090
+spring:
+  liquibase:
+    change-log: classpath:changelog/db.changelog-master.xml
+    contexts: postgres
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/clinic
+    username: postgres
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQL10Dialect
+
+  mail:
+    host: mail.ipi.gov.eg
+    port: 587
+    username: pve@mped.gov.eg
+    password: vz35LI!^
+    server-ip: 41.196.200.134
+    properties:
+      mail:
+        smtp:
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
+          auth: true
+  #          starttls:
+  #            enable: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type: INFO
+
+app:
+  welcome-url: http://41.65.11.55:8055/login
+  allowed-origins:
+    http://41.38.83.137:8060,http://localhost:4200
+  mail:
+    confirmation-url : http://localhost:8085
+    reset-password-url: http://41.65.11.55:8055/confirm-pass
+
+  jwt:
+    token:
+      expiration-in-ms: 120000
+    refresh:
+      expiration-in-ms: 3600000
+    secret: ElectionEgypt2022VeryVeryVeryVeryVeryVerySecretKey

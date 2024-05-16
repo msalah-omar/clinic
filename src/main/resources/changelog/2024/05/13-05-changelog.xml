@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+    <changeSet id="5" author="mohamed salah">
+        <createTable tableName="visit">
+            <column autoIncrement="true" name="id" type="INT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_visit"/>
+            </column>
+            <column name="version" type="INT"/>
+            <column name="created_by" type="VARCHAR(255)"/>
+            <column name="modified_by" type="VARCHAR(255)"/>
+            <column name="created_date" type="DATETIME"/>
+            <column name="modified_date" type="DATETIME"/>
+            <column name="date" type="date"/>
+            <column name="pet_id" type="INT"/>
+            <column name="doctor_id" type="INT"/>
+            <column name="clinic_id" type="INT"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="visit" baseColumnNames="pet_id"
+                                 referencedTableName="pet" referencedColumnNames="id"
+                                 constraintName="fk_visit_pet_id" />
+        <addForeignKeyConstraint baseTableName="visit" baseColumnNames="doctor_id"
+                                 referencedTableName="doctor" referencedColumnNames="id"
+                                 constraintName="fk_visit_doctor_id" />
+        <addForeignKeyConstraint baseTableName="visit" baseColumnNames="clinic_id"
+                                 referencedTableName="clinic" referencedColumnNames="id"
+                                 constraintName="fk_visit_clinic_id" />
+    </changeSet>
+</databaseChangeLog>
